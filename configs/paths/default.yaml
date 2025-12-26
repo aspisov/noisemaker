@@ -1,0 +1,9 @@
+root_dir: /Users/dimaaspisov/Desktop/Github/diffusion
+
+data_dir: ${paths.root_dir}/data
+
+log_dir: ${paths.root_dir}/logs
+
+output_dir: ${paths.root_dir}/output_dir
+
+work_dir: ${hydra:runtime.cwd}
