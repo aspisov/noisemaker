@@ -18,6 +18,3 @@ format:
 
 train:
 	sh scripts/train.sh
-
-clean-logs:
-	rm -rf logs/**

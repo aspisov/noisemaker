@@ -2,21 +2,18 @@ from typing import Any
 
 import hydra
 import lightning as L
-import rootutils
 from lightning import Callback, LightningDataModule, LightningModule, Trainer
 from lightning.pytorch.loggers import Logger
 from omegaconf import DictConfig
 
-from src.utils import (
+from .utils import (
     RankedLogger,
     get_metric_value,
     instantiate_callbacks,
     instantiate_loggers,
-    task_wrapper,
     log_hyperparameters,
+    task_wrapper,
 )
-
-root = rootutils.setup_root(__file__, indicator=".project-root", pythonpath=True)
 
 log = RankedLogger(__name__, rank_zero_only=True)
 
@@ -76,7 +73,7 @@ def train(cfg: DictConfig) -> tuple[dict[str, Any], dict[str, Any]]:
     return metrics_dict, object_dict
 
 
-@hydra.main(version_base="1.3", config_path=str(root / "configs"), config_name="train.yaml")
+@hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")
 def main(cfg: DictConfig) -> float | None:
     metrics_dict, _ = train(cfg)
 
