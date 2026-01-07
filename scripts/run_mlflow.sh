@@ -1,1 +1,1 @@
-mlflow ui --backend-store-uri postgresql://mlflow:mlflow@localhost:5432/mlflow_db
+uv run mlflow ui --backend-store-uri sqlite:////Users/dimaaspisov/Desktop/Github/diffusion/logs/mlflow/mlflow.db

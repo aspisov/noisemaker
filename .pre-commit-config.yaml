@@ -6,7 +6,7 @@ repos:
   # Ruff: lint + format (core)
   # -----------------------------
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.4.8
+  rev: v0.14.10
   hooks:
   - id: ruff
     name: ruff (lint)
@@ -40,7 +40,7 @@ repos:
   # YAML formatting (Hydra-friendly)
   # -----------------------------
 - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-  rev: v2.13.0
+  rev: v2.15.0
   hooks:
   - id: pretty-format-yaml
     args:
@@ -48,3 +48,9 @@ repos:
     - --indent=2
     - --preserve-quotes
     files: \.(yml|yaml)$
+
+# Could add mypy for type checking
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.19.1
+  hooks:
+  - id: mypy

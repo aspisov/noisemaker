@@ -16,8 +16,22 @@ scheduler:
 net:
   _target_: src.models.components.diffusion.DDPM
   in_channels: 1
-  hidden_channels: 32
   out_channels: 1
   time_dim: 1000
+  unet:
+    _target_: diffusers.UNet2DModel
+    sample_size: 28
+    in_channels: ${model.net.in_channels}
+    out_channels: ${model.net.out_channels}
+    layers_per_block: 2
+    block_out_channels: [32, 64, 64]
+    down_block_types: ["DownBlock2D", "AttnDownBlock2D", "AttnDownBlock2D"]
+    up_block_types: ["AttnUpBlock2D", "AttnUpBlock2D", "UpBlock2D"]
+  scheduler:
+    _target_: src.models.components.diffusion.DDMPScheduler
+    num_train_timesteps: ${model.net.time_dim}
+    beta_start: 0.0001
+    beta_end: 0.02
+    beta_schedule: "squaredcos_cap_v2"
 
 compile: false
